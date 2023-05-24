@@ -1,0 +1,13 @@
+package com.dogtorhouse.app;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class DogtorHouseAppApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

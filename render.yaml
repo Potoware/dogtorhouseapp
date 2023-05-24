@@ -1,0 +1,15 @@
+services:
+  - name: dogtorhouse-app
+    dockerfile: Dockerfile
+    envs:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-ch5trcgrddl7aldo7oj0-a:5432/dbdogtorhousedev
+      - key: SPRING_DATASOURCE_USERNAME
+        value: dogtorhousedev
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: t6QL0QENGLpYby3YmyX8oAQIOz0Se50K
+      - key: SPRING_JPA_DATABASE_PLATFORM
+        value: org.hibernate.dialect.PostgreSQLDialect
+    ports:
+      - 8080:8080
+    healthCheckPath: /actuator/health
