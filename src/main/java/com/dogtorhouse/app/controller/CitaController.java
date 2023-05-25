@@ -50,7 +50,7 @@ public class CitaController extends BaseController {
 	@Autowired
 	private ClienteService clienteService;
 
-	@RequestMapping(value = { "/dogtorhouse/citas", "*" })
+	@RequestMapping(value = { "/dogtorhouse/citas" })
 	public String listarCitas(Map<String, Object> model, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
 			return "redirect:/login";

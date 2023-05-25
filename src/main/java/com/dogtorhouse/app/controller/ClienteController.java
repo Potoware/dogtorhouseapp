@@ -54,7 +54,7 @@ public class ClienteController extends BaseController{
 	@RequestMapping(value="/dogtorhouse/clientes")
 	public String listarClientes(Map<String,Object> model,HttpSession session) {
 		if(!usuarioLogueado((Veterinario)session.getAttribute("veterinarioSesion"))){
-			return "redirect:/login";
+			//return "redirect:/login";
 		}
 		super.init(model, session);
 		model.put("criterio",new CriterioCliente());
