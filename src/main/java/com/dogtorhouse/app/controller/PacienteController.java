@@ -151,7 +151,7 @@ public class PacienteController extends BaseController{
 			super.mostrarMensajeError("El paciente id "+id+" no existe", redirectAttributes,null);
 			return "redirect:/dogtorhouse/pacientes";
 		}
-		System.out.println(pacienteOptional.get().getRaza());
+
 		byte[] fotoBytes = pacienteOptional.get().getFoto();
 		model.put("base64Utils", base64Utils);
 	    // Agregar los bytes de la foto al modelo
@@ -188,7 +188,7 @@ public class PacienteController extends BaseController{
 		
 		
 		if (model instanceof Model) {
-			System.out.println("Model");
+
 			((Model) model).addAttribute("clientes", clientes);
 	        ((Model) model).addAttribute("especiesRazas", Constantes.listaEspeciesRazas);
 	        ((Model) model).addAttribute("especies", Constantes.listaEspeciesRazas.keySet());
@@ -196,7 +196,7 @@ public class PacienteController extends BaseController{
 			((Map<String, Object>) model).put("clientes", clientes);
 			((Map<String, Object>) model).put("especiesRazas", Constantes.listaEspeciesRazas);
 			((Map<String, Object>) model).put("especies", Constantes.listaEspeciesRazas.keySet());
-			System.out.println("Map");
+
 		}
 	}
 	

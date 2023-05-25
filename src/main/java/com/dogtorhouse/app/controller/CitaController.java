@@ -155,7 +155,6 @@ public class CitaController extends BaseController {
 				    medicacionList.set(i, medicacion); // Reemplazar el elemento modificado en la lista
 				}
 
-				 System.out.println(medicacionList);
 				cita.setMedicacion(medicacionList);
 				
 				
@@ -263,7 +262,6 @@ public class CitaController extends BaseController {
 			return "redirect:/login";
 		}
 		init(model, session);
-		System.out.println("XXXXLLLL ENTROOO");
 		return "dogtorhouse/reportes/reporte";
 
 	}

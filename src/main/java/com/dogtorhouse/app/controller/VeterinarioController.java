@@ -103,7 +103,6 @@ public class VeterinarioController extends BaseController {
 		}
 		super.init(model, session);
 
-		System.out.println(result.getAllErrors());
 		if (result.hasErrors() && !"CONTRASENIA".equals(origen)) {
 			super.mostrarMensajeError("Hay errores en el formulario", null, model);
 			return "dogtorhouse/veterinarios/veterinarioForm";

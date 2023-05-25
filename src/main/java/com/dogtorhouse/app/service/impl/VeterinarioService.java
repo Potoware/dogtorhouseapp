@@ -58,7 +58,6 @@ public void deleteById(Long id) {
 
 @Override
 public List<Veterinario> findAllCriterioVeterinario(CriterioVeterinario criterio) {
-	System.out.println(criterio.getNombres());
 	
 	return ((List<Veterinario>) veterinarioRepository.findAll()).stream()
 		.filter(veterinario -> Utilidades.isBlankOrNull(criterio.getIdentificacion()) || veterinario.getIdentificacion().contains(criterio.getIdentificacion()))

@@ -52,7 +52,7 @@ public class PacienteService implements IPacienteService{
 	
 	@Override
 	public List<Paciente> findAllCriterioPaciente(CriterioPaciente criterio) {
-		System.out.println(criterio.getNombre());
+
 		return ((List<Paciente>) pacienteRepository.findAll()).stream()
 			.filter(paciente -> criterio.getId() == null || paciente.getId().equals(criterio.getId()))
 			.filter(paciente -> Utilidades.isBlankOrNull(criterio.getEspecie())|| paciente.getEspecie().toLowerCase().contains(criterio.getEspecie().toLowerCase()))

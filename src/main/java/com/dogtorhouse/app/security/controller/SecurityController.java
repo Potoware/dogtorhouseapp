@@ -34,7 +34,7 @@ public class SecurityController {
 	private CifradoService cifradoService;
 	private Base64Utils base64Utils = new Base64Utils();
 	
-	@RequestMapping(value ={"/login"})
+	@RequestMapping(value ={"/login", "/", ""})
 	public String login(Map <String, Object> model,HttpSession session) {
 		Veterinario veterinario = new Veterinario();
 		if(((Model) model).getAttribute("mensaje")!=null) {
@@ -66,15 +66,18 @@ public class SecurityController {
 			}
 		}
 		session.setAttribute("veterinarioSesion", veterinarioConsultado.isPresent()?veterinarioConsultado.get():null);
+		
+		if(!credencialesCorrectas) {
+			redirectAttributes.addFlashAttribute("mensaje",new Mensaje("error","El usuario o contraseña son incorrectos"));
+
+			return "redirect:/login";
+		}
+		
 		byte[] fotoBytes = veterinarioConsultado.get().getFoto();
 		session.setAttribute("base64UtilsV2", base64Utils);
 		// Agregar los bytes de la foto al modelo
 		session.setAttribute("fotoBytesPrf", fotoBytes);
-		if(!credencialesCorrectas) {
-			redirectAttributes.addFlashAttribute("mensaje",new Mensaje("error","El usuario o contraseña son incorrectos"));
-			System.out.println("___XXX__XXX_X_X_asdasd");
-			return "redirect:/login";
-		}
+		
 		status.setComplete();
 		return "redirect:/dogtorhouse/citas";
 		

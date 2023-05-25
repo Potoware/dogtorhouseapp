@@ -34,7 +34,6 @@ public class CitaService implements ICitaService {
 	
 	@Override
 	public List<Cita> findAllCriterioCita(CriterioCita criterio) {
-	    System.out.println(criterio.getId());
 
 	    final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	    final LocalDateTime fechaInicio;
