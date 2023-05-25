@@ -34,7 +34,7 @@ public class SecurityController {
 	private CifradoService cifradoService;
 	private Base64Utils base64Utils = new Base64Utils();
 	
-	@RequestMapping(value ={"/login","/*"})
+	@RequestMapping(value ={"/login"})
 	public String login(Map <String, Object> model,HttpSession session) {
 		Veterinario veterinario = new Veterinario();
 		if(((Model) model).getAttribute("mensaje")!=null) {
@@ -44,7 +44,7 @@ public class SecurityController {
 		}
 		model.put("veterinario", veterinario);
 		session.removeAttribute("veterinarioSesion");
-		return "/dogtorhouse/login";
+		return "dogtorhouse/login";
 		
 	}
 	
