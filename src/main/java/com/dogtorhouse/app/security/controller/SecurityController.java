@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -33,7 +34,7 @@ public class SecurityController {
 	private CifradoService cifradoService;
 	private Base64Utils base64Utils = new Base64Utils();
 	
-	@RequestMapping(value ={"/login"})
+	@GetMapping(value ={"/login","/*"})
 	public String login(Map <String, Object> model,HttpSession session) {
 		Veterinario veterinario = new Veterinario();
 		if(((Model) model).getAttribute("mensaje")!=null) {
