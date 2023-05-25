@@ -53,7 +53,7 @@ public class CitaController extends BaseController {
 	@RequestMapping(value = { "/dogtorhouse/citas", "*" })
 	public String listarCitas(Map<String, Object> model, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		init(model, session);
 		model.put("criterio", new CriterioCita());
@@ -71,7 +71,7 @@ public class CitaController extends BaseController {
 	@RequestMapping(value = "/dogtorhouse/citas", method = RequestMethod.POST)
 	public String listarCitasFiltro(@Valid CriterioCita criterio, Map<String, Object> model, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		init(model, session);
 		model.put("criterio", new CriterioCita());
@@ -91,7 +91,7 @@ public class CitaController extends BaseController {
 	@RequestMapping(value = "/dogtorhouse/citas/cita")
 	public String crearCitaForm(Map<String, Object> model, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		init(model, session);
 		Cita cita = new Cita();
@@ -113,7 +113,7 @@ public class CitaController extends BaseController {
 			RedirectAttributes redirectAttributes, HttpSession session,
 			@RequestParam(value = "medicacion", required = false) List<String> medicacionList) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		if (result.hasErrors()) {
 			mostrarMensajeError("Hay errores en el formulario", null, model);
@@ -179,7 +179,7 @@ public class CitaController extends BaseController {
 	public String editarCitaForm(@PathVariable(value = "idCita") Long id, Map<String, Object> model,
 			RedirectAttributes redirectAttributes, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		init(model, session);
 
@@ -210,7 +210,7 @@ public class CitaController extends BaseController {
 	public String atenderCitaForm(@PathVariable(value = "idCita") Long id, Map<String, Object> model,
 			RedirectAttributes redirectAttributes, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		init(model, session);
 
@@ -241,7 +241,7 @@ public class CitaController extends BaseController {
 	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes redirectAttributes, Model model,
 			HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		init(model, session);
 		Optional<Cita> cita = citaService.findById(id);
@@ -260,7 +260,7 @@ public class CitaController extends BaseController {
 	@RequestMapping(value = "/dogtorhouse/reportes/reporte")
 	public String reporte(RedirectAttributes redirectAttributes, Model model, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		init(model, session);
 		System.out.println("XXXXLLLL ENTROOO");

@@ -62,7 +62,7 @@ public class PacienteController extends BaseController{
 	@RequestMapping(value="/dogtorhouse/pacientes")
 	public String listarPacientes(Map<String,Object> model,HttpSession session) {
 		if(!usuarioLogueado((Veterinario)session.getAttribute("veterinarioSesion"))){
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		cargarListas(model);
@@ -77,7 +77,7 @@ public class PacienteController extends BaseController{
 	@RequestMapping(value="/dogtorhouse/pacientes", method = RequestMethod.POST)
 	public String listarPacientesFiltro(CriterioPaciente criterio,Map<String,Object> model,HttpSession session) {
 		if(!usuarioLogueado((Veterinario)session.getAttribute("veterinarioSesion"))){
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		cargarListas(model);
@@ -91,7 +91,7 @@ public class PacienteController extends BaseController{
 	@RequestMapping(value="/dogtorhouse/pacientes/paciente")
 	public String crearPacienteForm(Map <String, Object> model,HttpSession session) {
 		if(!usuarioLogueado((Veterinario)session.getAttribute("veterinarioSesion"))){
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		
 		super.init(model, session);
@@ -110,7 +110,7 @@ public class PacienteController extends BaseController{
 	@RequestMapping(value="/dogtorhouse/pacientes/paciente", method = RequestMethod.POST)
 	public String guardarPaciente(@Valid Paciente paciente, BindingResult result, Model model, SessionStatus status, RedirectAttributes redirectAttributes,HttpSession session, @RequestParam(value="file",required = false) MultipartFile file) {
 		if(!usuarioLogueado((Veterinario)session.getAttribute("veterinarioSesion"))){
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		this.cargarListas(model);
@@ -140,7 +140,7 @@ public class PacienteController extends BaseController{
 	@RequestMapping(value="/dogtorhouse/pacientes/paciente/{idPaciente}")
 	public String editarPacienteForm(@PathVariable(value="idPaciente") Long id, Map <String, Object> model, RedirectAttributes redirectAttributes,HttpSession session) {
 		if(!usuarioLogueado((Veterinario)session.getAttribute("veterinarioSesion"))){
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		this.cargarListas(model);
@@ -167,7 +167,7 @@ public class PacienteController extends BaseController{
 	@RequestMapping(value="/dogtorhouse/pacientes/paciente/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Long id,RedirectAttributes redirectAttributes,Model model,HttpSession session) {
 		if(!usuarioLogueado((Veterinario)session.getAttribute("veterinarioSesion"))){
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		this.cargarListas(model);

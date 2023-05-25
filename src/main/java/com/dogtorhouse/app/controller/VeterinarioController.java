@@ -52,7 +52,7 @@ public class VeterinarioController extends BaseController {
 	@RequestMapping(value = "/dogtorhouse/veterinarios")
 	public String listarVeterinarios(Map<String, Object> model, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		model.put("criterio", new CriterioVeterinario());
@@ -65,7 +65,7 @@ public class VeterinarioController extends BaseController {
 	public String listarVeterinariosFiltro(@Valid CriterioVeterinario criterio, Map<String, Object> model,
 			HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		model.put("criterio", new CriterioVeterinario());
@@ -78,7 +78,7 @@ public class VeterinarioController extends BaseController {
 	@RequestMapping(value = "/dogtorhouse/veterinarios/veterinario")
 	public String crearVeterinarioForm(Map<String, Object> model, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		Veterinario veterinario = new Veterinario();
@@ -99,7 +99,7 @@ public class VeterinarioController extends BaseController {
 			@RequestParam("rolesValue") String rolesValue,
 			@RequestParam(value = "file", required = false) MultipartFile file) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 
@@ -167,7 +167,7 @@ public class VeterinarioController extends BaseController {
 			RedirectAttributes redirectAttributes, HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
 			super.mostrarMensajeError("Debe iniciar sesión para acceder a esta pagina", redirectAttributes, null);
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		Optional<Veterinario> veterinarioOptional = veterinarioService.findById(id);
@@ -197,7 +197,7 @@ public class VeterinarioController extends BaseController {
 			HttpSession session) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
 			super.mostrarMensajeError("Debe iniciar sesión para acceder a esta pagina", redirectAttributes, null);
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		super.init(model, session);
 		Optional<Veterinario> veterinario = veterinarioService.findById(id);

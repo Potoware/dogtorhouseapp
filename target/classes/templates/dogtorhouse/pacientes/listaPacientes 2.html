@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es-419">
+	<head th:replace="compartido/header"></head>
+	<body id="body-pd" class="bg-huella" onload="validarMensajes()">
+	<header class="header" id="header">
+		<div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+			<h5 class="title-page">Lista de pacientes</h5>
+		<div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
+	</header>
+	
+	<div class="l-navbar" id="nav-bar" th:replace="compartido/sidebar"></div>
+
+	<div style="padding-top:20px;">
+		<ul class="accordion" >
+			<li class="accordion__item">
+				<a class="accordion__title" href="javascript:void(0)">Filtrar Pacientes
+				<div class="bmenu x7"><span class="btop"></span><span class="bmid"></span><span class="bbot"></span></div>
+				</a>
+				<div class="accordion__content">
+					<div class="container">
+						<form action="#" th:action="@{/dogtorhouse/pacientes}" th:object="${criterio}" method="post">
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<div class="d-flex justify-content-start">
+										<label for="id" class="form-label me-3 w-25">ID Paciente:</label>
+										<input type="text" th:field="*{id}" class="form-control" id="id">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="d-flex justify-content-start">
+										<label for="nombre" class="form-label me-3 w-25">Nombre:</label>
+										<input type="nombre" th:field="*{id}" class="form-control" id="nombre">
+									</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<div class="d-flex justify-content-start">
+										<label for="especie" class="form-label me-3 w-25">Especie:</label>
+										<input type="text" class="form-control" th:field="*{especie}" id="especie">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="d-flex justify-content-start">
+										<label for="raza" class="form-label me-3 w-25">Raza:</label>
+										<input type="text" class="form-control" th:field="*{raza}" id="raza">
+									</div>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<div class="d-flex justify-content-start">
+										<label for="cliente" class="form-label me-3 w-25">Cliente:</label>
+										<select class="form-select" th:field="*{cliente}" id="cliente">
+											<option value="">Seleccione...</option>
+											<option th:each="cliente: ${clientes}" th:value="${cliente.id}" th:text="${cliente}" ></option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col">
+									<button type="submit" onclick="javascript:void(0)" class="btn btn-secondary">Filtrar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="container">
+
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">	
+			<a class="btn mt-3" th:href="@{/dogtorhouse/pacientes/paciente}" style="background-color: rgb(148, 17, 0);color:white">Nuevo Paciente</a>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Especie</th>
+					<th>Raza</th>
+					<th>Cliente</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="paciente : ${pacientes}">
+					<td th:text="${paciente.id}"></td>
+					<td th:text="${paciente.nombre}"></td>
+					<td th:text="${paciente.especie}"></td>
+					<td th:text="${paciente.raza}"></td>
+					<td th:text="${paciente.cliente}"></td>
+					<td>
+						<a class="btn btn-edit btn-xs" th:href="@{/dogtorhouse/pacientes/paciente/}+${paciente.id}"><i class="bi bi-pencil-square" style="color: white;"></i></a>
+						<a class="btn btn-danger btn-xs" th:href="@{/dogtorhouse/pacientes/paciente/eliminar/}+${paciente.id}"  onclick="mostrarPopupConfirmar('¿Estás seguro que quieres eliminar el paciente?', this); return false;"><i class="bi bi-trash-fill" style="color: white;" ></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+	
+	</body>
+</html>

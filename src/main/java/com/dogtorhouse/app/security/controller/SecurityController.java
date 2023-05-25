@@ -72,7 +72,7 @@ public class SecurityController {
 		if(!credencialesCorrectas) {
 			redirectAttributes.addFlashAttribute("mensaje",new Mensaje("error","El usuario o contraseña son incorrectos"));
 			System.out.println("___XXX__XXX_X_X_asdasd");
-			return "redirect:/dogtorhouse/login";
+			return "redirect:/login";
 		}
 		status.setComplete();
 		return "redirect:/dogtorhouse/citas";
