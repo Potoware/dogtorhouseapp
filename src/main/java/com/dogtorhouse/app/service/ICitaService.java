@@ -10,14 +10,12 @@ import com.dogtorhouse.app.util.criteria.CriterioCita;
 public interface ICitaService {
 
 	public List<Cita> findAll();
-	
+
 	public Cita save(Cita cita);
-	
+
 	public Optional<Cita> findById(Long id);
 
-	
 	public List<Cita> findByPaciente(Paciente paciente);
-
 
 	List<Cita> findAllCriterioCita(CriterioCita criterio);
 

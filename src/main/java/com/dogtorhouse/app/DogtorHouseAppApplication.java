@@ -12,7 +12,6 @@ public class DogtorHouseAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DogtorHouseAppApplication.class, args);
 	}
-	
 
 	@PostConstruct
 	public void printSecurityConfig() {

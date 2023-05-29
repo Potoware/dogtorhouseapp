@@ -4,13 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import com.dogtorhouse.app.entity.Rol;
-import com.dogtorhouse.app.entity.Veterinario;
 
 public interface IRolService {
-public List<Rol> findAll();
-	
+	public List<Rol> findAll();
+
 	public Rol save(Rol rol);
-	
+
 	public Optional<Rol> findById(Long id);
 
 	public void deleteById(Long id);

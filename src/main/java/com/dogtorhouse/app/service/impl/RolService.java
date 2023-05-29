@@ -11,10 +11,11 @@ import com.dogtorhouse.app.repository.RolRepository;
 import com.dogtorhouse.app.service.IRolService;
 
 @Service
-public class RolService implements IRolService{
+public class RolService implements IRolService {
 
 	@Autowired
 	private RolRepository rolRepository;
+
 	@Override
 	public List<Rol> findAll() {
 		// TODO Auto-generated method stub
@@ -36,7 +37,7 @@ public class RolService implements IRolService{
 	@Override
 	public void deleteById(Long id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

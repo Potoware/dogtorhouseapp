@@ -12,7 +12,7 @@ import com.dogtorhouse.app.entity.Veterinario;
 
 @Repository
 public interface VeterinarioRepository extends CrudRepository<Veterinario, Long> {
-	
+
 	@Query(value = "SELECT v FROM Veterinario v WHERE v.email = :email")
 	Optional<Veterinario> findByEmail(@Param("email") String email);
 

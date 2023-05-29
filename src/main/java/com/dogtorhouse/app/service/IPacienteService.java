@@ -9,9 +9,9 @@ import com.dogtorhouse.app.util.criteria.CriterioPaciente;
 public interface IPacienteService {
 
 	public List<Paciente> findAll();
-	
+
 	public Paciente save(Paciente paciente);
-	
+
 	public Optional<Paciente> findById(Long id);
 
 	public void deleteById(Long id);

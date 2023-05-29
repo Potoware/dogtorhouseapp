@@ -7,7 +7,8 @@
 	<header class="header" id="header">
 		<div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
 		<h5 class="title-page" th:text="${operacion}"></h5>
-<div class="header_img" th:replace="compartido/imgPrf"></div>	</header>
+		<div class="header_img" th:replace="compartido/imgPrf"></div>
+	</header>
 
 	<div class="l-navbar" id="nav-bar" th:replace="compartido/sidebar"></div>
 
@@ -33,8 +34,7 @@
 									<label for="file" class="col-form-label">Cargar Foto:</label>
 								</div>
 								<div class="col-sm-6">
-									<input type="file" id="file" name="file" accept="image/*" class="form-control"
-										 />
+									<input type="file" id="file" name="file" accept="image/*" class="form-control" />
 									<small class="form-text text-danger" th:if="${#fields.hasErrors('foto')}"
 										th:errors="*{foto}"></small>
 								</div>
@@ -167,7 +167,8 @@
 										th:errors="*{email}"></small>
 								</div>
 							</div>
-							<div th:if="${veterinario.id==null}" class="row g-3 align-items-baseline mt-1 justify-content-center">
+							<div th:if="${veterinario.id==null}"
+								class="row g-3 align-items-baseline mt-1 justify-content-center">
 								<div class="col-sm-2 text-end">
 									<label for="password" class="col-form-label">Contraseña:</label>
 								</div>
@@ -178,37 +179,38 @@
 								</div>
 							</div>
 
-<div class="row g-3 align-items-baseline mt-1 justify-content-center">
-    <div class="col-sm-2 text-end">
-        <label for="administrador" class="col-form-label">Administrador:</label>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-check form-switch">
-            <input type="checkbox" class="form-check-input" id="administrador" value="2" th:checked="${idRol == 2}" />
+							<div class="row g-3 align-items-baseline mt-1 justify-content-center">
+								<div class="col-sm-2 text-end">
+									<label for="administrador" class="col-form-label">Administrador:</label>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-check form-switch">
+										<input type="checkbox" class="form-check-input" id="administrador" value="2"
+											th:checked="${idRol == 2}" />
 
-            <label class="form-check-label" for="administrador"></label>
-        </div>
-    </div>
-</div>
+										<label class="form-check-label" for="administrador"></label>
+									</div>
+								</div>
+							</div>
 
-<input type="hidden" id="rolesValue" name="rolesValue" />
+							<input type="hidden" id="rolesValue" name="rolesValue" />
 
-<script>
-    document.getElementById("administrador").addEventListener("change", function() {
-        var rolesValueInput = document.getElementById("rolesValue");
-        var administradorCheckbox = document.getElementById("administrador");
-        
-        if (administradorCheckbox.checked) {
-            // Si el checkbox está marcado, asignar el valor "2" al campo de rolesValue
-            rolesValueInput.value = "2";
-        } else {
-            // Si el checkbox no está marcado, asignar el valor "1" al campo de rolesValue
-            rolesValueInput.value = "1";
-        }
-    });
-</script>
+							<script>
+								document.getElementById("administrador").addEventListener("change", function () {
+									var rolesValueInput = document.getElementById("rolesValue");
+									var administradorCheckbox = document.getElementById("administrador");
 
-<input type="hidden" id="roles" name="rolesV"  />
+									if (administradorCheckbox.checked) {
+										// Si el checkbox está marcado, asignar el valor "2" al campo de rolesValue
+										rolesValueInput.value = "2";
+									} else {
+										// Si el checkbox no está marcado, asignar el valor "1" al campo de rolesValue
+										rolesValueInput.value = "1";
+									}
+								});
+							</script>
+
+							<input type="hidden" id="roles" name="rolesV" />
 
 
 							<div class="row g-3 align-items-baseline mt-1 justify-content-center">
@@ -226,7 +228,8 @@
 								</div>
 							</div>
 
-							<div th:if="${veterinario.id!=null}" class="row g-3 align-items-baseline mt-1 justify-content-center">
+							<div th:if="${veterinario.id!=null}"
+								class="row g-3 align-items-baseline mt-1 justify-content-center">
 								<div class="col-sm-5 text-center">
 									<button type="button" class="btn btn-cancelar" data-bs-toggle="modal"
 										data-bs-target="#contraseniaModal" data-bs-whatever="@mdo"><i
@@ -269,7 +272,7 @@
 						<div class="mb-3">
 							<label for="recipient-name" class="col-form-label">Confirmar Contraseña:</label>
 
-							<input id="passwordConfirm" name="passwordConfirm"  type="password" class="form-control">
+							<input id="passwordConfirm" name="passwordConfirm" type="password" class="form-control">
 
 
 						</div>

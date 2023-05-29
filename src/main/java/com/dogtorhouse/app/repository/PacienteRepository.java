@@ -10,5 +10,5 @@ import com.dogtorhouse.app.entity.Paciente;
 
 @Repository
 public interface PacienteRepository extends CrudRepository<Paciente, Long> {
-  List<Paciente> findByCliente(Cliente cliente);
+	List<Paciente> findByCliente(Cliente cliente);
 }

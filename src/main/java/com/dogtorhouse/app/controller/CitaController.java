@@ -1,5 +1,7 @@
 package com.dogtorhouse.app.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +11,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,14 +26,12 @@ import com.dogtorhouse.app.entity.Cita;
 import com.dogtorhouse.app.entity.Cliente;
 import com.dogtorhouse.app.entity.Paciente;
 import com.dogtorhouse.app.entity.Veterinario;
-import com.dogtorhouse.app.repository.CitaRepository;
 import com.dogtorhouse.app.service.impl.CitaService;
 import com.dogtorhouse.app.service.impl.ClienteService;
 import com.dogtorhouse.app.service.impl.PacienteService;
 import com.dogtorhouse.app.service.impl.VeterinarioService;
 import com.dogtorhouse.app.util.Constantes;
 import com.dogtorhouse.app.util.criteria.CriterioCita;
-import com.dogtorhouse.app.util.criteria.CriterioCliente;
 
 @Controller
 @SessionAttributes("cita")
@@ -46,7 +44,7 @@ public class CitaController extends BaseController {
 
 	@Autowired
 	private VeterinarioService veterinarioService;
-	
+
 	@Autowired
 	private ClienteService clienteService;
 
@@ -58,13 +56,20 @@ public class CitaController extends BaseController {
 		init(model, session);
 		model.put("criterio", new CriterioCita());
 		List<Cita> citas = citaService.findAll();
+		// Obtener la fecha actual
+		LocalDate fechaActual = LocalDate.now();
+
+		// Filtrar las citas que no son del día actual
+		citas.removeIf(cita -> !esMismoDia(cita.getFechaHora(), fechaActual));
+
 		model.put("citas", citas);
 		List<Cliente> clientes = clienteService.findAll();
 		List<Paciente> pacientes = pacienteService.findAll();
 		List<Veterinario> veterinarios = veterinarioService.findAll();
-		model.put("clientes",clientes);
-		model.put("pacientes",pacientes);
+		model.put("clientes", clientes);
+		model.put("pacientes", pacientes);
 		model.put("veterinarios", veterinarios);
+		super.mostrarMensajeInformativo("Hay " + citas.size() + " citas para hoy " + fechaActual, model);
 		return "dogtorhouse/citas/listaCitas";
 	}
 
@@ -79,8 +84,8 @@ public class CitaController extends BaseController {
 		List<Cliente> clientes = clienteService.findAll();
 		List<Paciente> pacientes = pacienteService.findAll();
 		List<Veterinario> veterinarios = veterinarioService.findAll();
-		model.put("clientes",clientes);
-		model.put("pacientes",pacientes);
+		model.put("clientes", clientes);
+		model.put("pacientes", pacientes);
 		model.put("veterinarios", veterinarios);
 		super.mostrarMensajeInformativo("Se encontraron " + citas.size() + " registros", model);
 
@@ -120,7 +125,7 @@ public class CitaController extends BaseController {
 			init(model, session);
 			return "dogtorhouse/citas/citaForm";
 		}
-		Cita auxCita = citaService.save(cita);
+		citaService.save(cita);
 		status.setComplete();
 
 		switch (origen) {
@@ -139,35 +144,32 @@ public class CitaController extends BaseController {
 			mostrarMensajeCorrecto("Cita cancelada correctamente", redirectAttributes);
 			return "redirect:/dogtorhouse/citas/cita/" + cita.getId();
 		case Constantes.ATENDER_CITA:
-			
+
 			cita.setEstado(cita.getEstado());
 			cita.setFechaAtencion(new Date());
 			if (medicacionList != null) {
-				medicacionList.removeIf(ml->ml.equals("[]"));
+				medicacionList.removeIf(ml -> ml.equals("[]"));
 				for (int i = 0; i < medicacionList.size(); i++) {
-				    String medicacion = medicacionList.get(i);
-				    
-				    medicacion = medicacion.replaceAll("\\[", ""); // Eliminar caracteres "["
-				    medicacion = medicacion.replaceAll("\\]", ""); // Eliminar caracteres "]"
-				    medicacion = medicacion.replaceAll("Eliminar", ""); // Eliminar palabra "Eliminar"
-				    medicacion = medicacion.trim(); // Eliminar espacios al inicio y final
-				    
-				    medicacionList.set(i, medicacion); // Reemplazar el elemento modificado en la lista
+					String medicacion = medicacionList.get(i);
+
+					medicacion = medicacion.replaceAll("\\[", ""); // Eliminar caracteres "["
+					medicacion = medicacion.replaceAll("\\]", ""); // Eliminar caracteres "]"
+					medicacion = medicacion.replaceAll("Eliminar", ""); // Eliminar palabra "Eliminar"
+					medicacion = medicacion.trim(); // Eliminar espacios al inicio y final
+
+					medicacionList.set(i, medicacion); // Reemplazar el elemento modificado en la lista
 				}
 
 				cita.setMedicacion(medicacionList);
-				
-				
+
 			}
 			citaService.save(cita);
 			mostrarMensajeCorrecto("Atención añadida correctamente", redirectAttributes);
 			return "redirect:/dogtorhouse/citas/atenderCita/" + cita.getId();
-			
+
 		default:
 			cita.setEstado(Constantes.CODIGO_ESTADO_CITA_ACTIVA);
 			citaService.save(cita);
-
-		
 
 			mostrarMensajeCorrecto("Cita guardada correctamente", redirectAttributes);
 			return "redirect:/dogtorhouse/citas/cita/" + cita.getId();
@@ -194,12 +196,11 @@ public class CitaController extends BaseController {
 		model.put("cita", citaOptional.get());
 		model.put("veterinarios", veterinarios);
 		model.put("pacientes", pacientes);
-		if(citaOptional.get().getEstado().equals(Constantes.CODIGO_ESTADO_CITA_CANCELADA)) {
+		if (citaOptional.get().getEstado().equals(Constantes.CODIGO_ESTADO_CITA_CANCELADA)) {
 			model.put("operacion", "Detalle Cita");
-		}else {
+		} else {
 			model.put("operacion", "Editar Cita");
 		}
-		
 
 		// ruta del html del form
 		return "dogtorhouse/citas/citaForm";
@@ -225,12 +226,11 @@ public class CitaController extends BaseController {
 		model.put("cita", citaOptional.get());
 		model.put("veterinarios", veterinarios);
 		model.put("pacientes", pacientes);
-		if(citaOptional.get().getEstado().equals(Constantes.CODIGO_ESTADO_CITA_FINALIZADA)) {
+		if (citaOptional.get().getEstado().equals(Constantes.CODIGO_ESTADO_CITA_FINALIZADA)) {
 			model.put("operacion", "Detalle Cita");
-		}else {
+		} else {
 			model.put("operacion", "Atender Cita");
 		}
-		
 
 		// ruta del html del form
 		return "dogtorhouse/citas/citaForm";
@@ -278,6 +278,11 @@ public class CitaController extends BaseController {
 			((Map<String, Object>) model).put("listaMotivosCancelacion", Constantes.motivosCancelacion);
 			((Map<String, Object>) model).put("listaEstadosCita", Constantes.listaEstadosCita);
 		}
+	}
+
+	public static boolean esMismoDia(LocalDateTime dateTime1, LocalDate date2) {
+		LocalDate date1 = dateTime1.toLocalDate();
+		return date1.isEqual(date2);
 	}
 
 }

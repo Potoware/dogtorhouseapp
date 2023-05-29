@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.dogtorhouse.app.entity.Cliente;
-import com.dogtorhouse.app.entity.Veterinario;
 
 @Repository
 public interface ClienteRepository extends CrudRepository<Cliente, Long> {

@@ -1,22 +1,15 @@
 package com.dogtorhouse.app.controller;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,10 +50,12 @@ public class VeterinarioController extends BaseController {
 		super.init(model, session);
 		model.put("criterio", new CriterioVeterinario());
 		List<Veterinario> veterinarios = veterinarioService.findAll();
-		
-		Long rol = ((Veterinario) session.getAttribute("veterinarioSesion")).getRoles().stream().findFirst().map(Rol::getId).orElse(null);
-		if(rol!=null && rol !=2) {
-			veterinarios.removeIf(vet->vet.getId()!= ((Veterinario) session.getAttribute("veterinarioSesion")).getId());
+
+		Long rol = ((Veterinario) session.getAttribute("veterinarioSesion")).getRoles().stream().findFirst()
+				.map(Rol::getId).orElse(null);
+		if (rol != null && rol != 2) {
+			veterinarios
+					.removeIf(vet -> vet.getId() != ((Veterinario) session.getAttribute("veterinarioSesion")).getId());
 		}
 		model.put("veterinarios", veterinarios);
 		return "dogtorhouse/veterinarios/listaVeterinarios";
@@ -101,7 +96,7 @@ public class VeterinarioController extends BaseController {
 			@RequestParam(value = "origen", required = false) String origen,
 			@RequestParam(value = "password", required = false) String password,
 			@RequestParam(value = "passwordConfirm", required = false) String passwordConfirm,
-			@RequestParam(value= "rolesValue", required = false) String rolesValue,
+			@RequestParam(value = "rolesValue", required = false) String rolesValue,
 			@RequestParam(value = "file", required = false) MultipartFile file) {
 		if (!usuarioLogueado((Veterinario) session.getAttribute("veterinarioSesion"))) {
 			return "redirect:/login";
@@ -141,19 +136,19 @@ public class VeterinarioController extends BaseController {
 			veterinario.setRoles(auxRoles.stream().collect(Collectors.toSet()));
 
 		}
-		
+
 		if (file != null && !file.isEmpty()) {
-	        try {
-	            // Obtener los bytes de la foto
-	        	if (!file.isEmpty()) {
-	                byte[] fotoBytes = file.getBytes();
-	                veterinario.setFoto(fotoBytes);
-	            }
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            // Manejar la excepción de lectura de la foto
-	        }
-	    }
+			try {
+				// Obtener los bytes de la foto
+				if (!file.isEmpty()) {
+					byte[] fotoBytes = file.getBytes();
+					veterinario.setFoto(fotoBytes);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				// Manejar la excepción de lectura de la foto
+			}
+		}
 
 		if (veterinario.getId() == null)
 			veterinario.setPassword(cifradoService.cifrarContrasenia(veterinario.getPassword()));

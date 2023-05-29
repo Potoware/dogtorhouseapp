@@ -25,7 +25,8 @@
 									<label for="paciente" class="col-form-label">Paciente:</label>
 								</div>
 								<div class="col-sm-6">
-									<select th:field="*{paciente}" th:disabled="${cita.id!=null}" class="form-control select2" required>
+									<select th:field="*{paciente}" th:disabled="${cita.id!=null}"
+										class="form-control select2" required>
 										<option value="">Seleccione...</option>
 										<option th:each="paciente: ${pacientes}" th:value="${paciente.id}"
 											th:text="${paciente.nombre +' (' +paciente.especie+') - Cliente: ' + paciente.cliente.identificacion}">
@@ -40,7 +41,8 @@
 									<label for="veterinario" class="col-form-label">Veterinario:</label>
 								</div>
 								<div class="col-sm-6">
-									<select th:field="*{veterinario}" th:disabled="${cita.id!=null}" class="form-control select2" required>
+									<select th:field="*{veterinario}" th:disabled="${cita.id!=null}"
+										class="form-control select2" required>
 										<option value="">Seleccione...</option>
 										<option th:each="veterinario: ${veterinarios}" th:value="${veterinario.id}"
 											th:text="${veterinario.identificacion +' - '+ veterinario.nombres +' ' + veterinario.apellidos}">
@@ -64,7 +66,7 @@
 										<option value="Urgencia">Urgencia</option>
 										<option value="Tratamiento">Tratamiento</option>
 										<option value="Valoracion">Valoracion</option>
-										<option th:value="*{tipo}" th:text="*{tipo}" ></option>
+										<option th:value="*{tipo}" th:text="*{tipo}"></option>
 									</select>
 									<small class="form-text text-danger" th:if"${#fields.hasErrors('tipo')}"
 										th:errors="*{tipo}"></small>
@@ -330,7 +332,8 @@
 								<select th:field="*{veterinario}" class="form-control" required>
 									<option value="">Seleccione...</option>
 									<option th:each="veterinario: ${veterinarios}" th:value="${veterinario.id}"
-										th:text="${veterinario.identificacion +' - ' + veterinario.nombres +' ' +veterinario.apellidos}"></option>
+										th:text="${veterinario.identificacion +' - ' + veterinario.nombres +' ' +veterinario.apellidos}">
+									</option>
 								</select>
 							</div>
 							<div class="mb-3">

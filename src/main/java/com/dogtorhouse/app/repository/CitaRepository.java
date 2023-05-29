@@ -10,6 +10,6 @@ import com.dogtorhouse.app.entity.Paciente;
 
 @Repository
 public interface CitaRepository extends CrudRepository<Cita, Long> {
-  List<Cita> findByPacienteOrderByFechaHoraAsc(Paciente paciente);
-  
+	List<Cita> findByPacienteOrderByFechaHoraAsc(Paciente paciente);
+
 }

@@ -7,13 +7,15 @@
 	<header class="header" id="header">
 		<div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
 		<h5 class="title-page" th:text="${operacion}"></h5>
-<div class="header_img" th:replace="compartido/imgPrf"></div>	</header>
+		<div class="header_img" th:replace="compartido/imgPrf"></div>
+	</header>
 
 	<div class="l-navbar" id="nav-bar" th:replace="compartido/sidebar"></div>
 
 	<div class="container pt-5 ">
-		<form th:action="@{/dogtorhouse/pacientes/paciente}" th:object="${paciente}" class="mx-auto" method="POST" enctype="multipart/form-data" >
-				<div class="row mt-4">
+		<form th:action="@{/dogtorhouse/pacientes/paciente}" th:object="${paciente}" class="mx-auto" method="POST"
+			enctype="multipart/form-data">
+			<div class="row mt-4">
 				<div class="col-md-8 mx-auto">
 					<div class="card mb-3">
 						<div class="image-container">
@@ -73,8 +75,8 @@
 					}
 				});
 			</script>
-			
-			
+
+
 			<div class="row">
 				<div class="col-md-8 mx-auto">
 					<div class="card">
@@ -129,7 +131,7 @@
 										th:errors="*{color}"></small>
 								</div>
 							</div>
-							
+
 							<div class="row g-3 align-items-baseline mt-1 justify-content-center">
 								<div class="col-sm-2 text-end">
 									<label for="identificacion" class="col-form-label">Fecha Nacimiento:</label>
@@ -144,7 +146,7 @@
 										th:errors="*{fechaNacimiento}"></small>
 								</div>
 							</div>
-							
+
 							<script th:inline="javascript">
 								var especiesRazas = /*[[${especiesRazas}]]*/ {};
 								var selectedEspecie = /*[[${paciente.especie}]]*/ '';

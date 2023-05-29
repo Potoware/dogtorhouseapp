@@ -1,6 +1,5 @@
 package com.dogtorhouse.app.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -49,12 +48,12 @@ public class Constantes {
 				"Labrador Retriever", "Pastor Alemán", "Pitbull", "Rottweiler", "Schnauzer"));
 
 		// Especies y razas de gatos
-		map.put("Gato", Arrays.asList("Angora", "Bengalí", "British Shorthair", "Criollo","Egipcio", "Maine Coon", "Persa",
-				"Ragdoll", "Scottish Fold", "Siamés", "Sphinx"));
+		map.put("Gato", Arrays.asList("Angora", "Bengalí", "British Shorthair", "Criollo", "Egipcio", "Maine Coon",
+				"Persa", "Ragdoll", "Scottish Fold", "Siamés", "Sphinx"));
 
 		// Especies y razas de conejos
-		map.put("Conejo", Arrays.asList("Angora", "Cabeza de León", "Criollo", "Enano", "Flemish Giant", "Holandés",
-				"Mini Rex"));
+		map.put("Conejo",
+				Arrays.asList("Angora", "Cabeza de León", "Criollo", "Enano", "Flemish Giant", "Holandés", "Mini Rex"));
 
 		// Especies y razas de aves
 		map.put("Ave", Arrays.asList("Águila", "Búho", "Canario", "Colibrí", "Cotorra", "Criollo", "Guacamaya", "Loros",

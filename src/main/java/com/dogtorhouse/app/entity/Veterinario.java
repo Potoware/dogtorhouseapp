@@ -1,4 +1,5 @@
 package com.dogtorhouse.app.entity;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,52 +22,52 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-
 @Entity
 @Table(name = "veterinarios")
 public class Veterinario {
 
-    /**
+	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@NotEmpty(message = "no puede estar vacio")
 	@Size(min = 1, max = 30)
-    private String nombres;
+	private String nombres;
 	@NotEmpty(message = "no puede estar vacio")
 	@Size(min = 1, max = 30)
-    private String apellidos;
+	private String apellidos;
 	private String identificacion;
 	@DateTimeFormat(pattern = "yyyy-MM-dd") // Especifica el patrón de formato de fecha deseado
 	private LocalDate fechaNacimiento;
 	private String direccion;
 	@Email
-    @NotEmpty(message = "no puede estar vacio")
+	@NotEmpty(message = "no puede estar vacio")
 	@Size(min = 1, max = 30)
-    @Column(unique = true)
-    private String email;
-	
+	@Column(unique = true)
+	private String email;
+
 	@NotEmpty(message = "no puede estar vacio")
 	@Column(nullable = false)
-	@Size(min = 8,message = "debe tener entre 8 y 32 caracteres")
-    private String password;
-	@Size(min = 1, max=10,message = "debe tener entre 8 y 32 caracteres")
-    private String telefono;
-	
+	@Size(min = 8, message = "debe tener entre 8 y 32 caracteres")
+	private String password;
+	@Size(min = 1, max = 10, message = "debe tener entre 8 y 32 caracteres")
+	private String telefono;
+
 	@Column(nullable = false)
-    private Boolean activo;
+	private Boolean activo;
 	@Lob
 	@Column(length = 4194304)
 	private byte[] foto;
-    private Date fechaBaja;
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "veterinarios_roles", joinColumns = @JoinColumn(name = "veterinario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
-    private Set<Rol> roles = new HashSet<>();
+	private Date fechaBaja;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "veterinarios_roles", joinColumns = @JoinColumn(name = "veterinario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
+	private Set<Rol> roles = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -108,7 +109,6 @@ public class Veterinario {
 		this.telefono = telefono;
 	}
 
-
 	public void setRoles(Set<Rol> roles) {
 		this.roles = roles;
 	}
@@ -116,7 +116,7 @@ public class Veterinario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -125,7 +125,7 @@ public class Veterinario {
 		return activo;
 	}
 
-	//@Transactional
+	// @Transactional
 	public Set<Rol> getRoles() {
 		return roles;
 	}
@@ -133,7 +133,7 @@ public class Veterinario {
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-    
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
@@ -179,7 +179,5 @@ public class Veterinario {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	
-    
+
 }

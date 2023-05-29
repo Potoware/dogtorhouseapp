@@ -1,8 +1,7 @@
 <div class="header_img">
-    <img th:if="${session.fotoBytesPrf != null}"
-         th:src="'data:image/' + ${#strings.replace(#strings.substringAfter(session.fotoType, '/'), '/', '')} + ';base64,' + ${session.base64UtilsV2.byteArrayToBase64(session.fotoBytesPrf)}"
-         alt="">
-    <img th:unless="${session.fotoBytesPrf != null}"
-         src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png"
-         alt="">
+	<img th:if="${session.fotoBytesPrf != null}"
+		th:src="'data:image/' + ${#strings.replace(#strings.substringAfter(session.fotoType, '/'), '/', '')} + ';base64,' + ${session.base64UtilsV2.byteArrayToBase64(session.fotoBytesPrf)}"
+		alt="">
+	<img th:unless="${session.fotoBytesPrf != null}"
+		src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png" alt="">
 </div>

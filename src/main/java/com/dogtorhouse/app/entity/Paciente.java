@@ -19,74 +19,74 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 public class Paciente {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  
-  @NotEmpty(message = "no puede estar vacio")
-  @Size(min = 1, max = 30)
-  private String nombre;
-  @NotEmpty(message = "no puede estar vacio")
-  @Size(min = 1, max = 30)
-  private String especie;
-  @NotEmpty(message = "no puede estar vacio")
-  @Size(min = 1, max = 30)
-  private String raza;
-  private Date fechaBaja;
-  @OneToOne(mappedBy = "paciente")
-  private HistoriaClinica historiaClinica;
-  
-  private String color;
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
-  private Date fechaNacimiento;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@NotEmpty(message = "no puede estar vacio")
+	@Size(min = 1, max = 30)
+	private String nombre;
+	@NotEmpty(message = "no puede estar vacio")
+	@Size(min = 1, max = 30)
+	private String especie;
+	@NotEmpty(message = "no puede estar vacio")
+	@Size(min = 1, max = 30)
+	private String raza;
+	private Date fechaBaja;
+	@OneToOne(mappedBy = "paciente")
+	private HistoriaClinica historiaClinica;
+
+	private String color;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date fechaNacimiento;
 	@Lob
 	@Column(length = 4194304)
-  private byte[] foto;
-  
-  @NotNull(message="Es necesario asociar el dueño")
-  @ManyToOne
-  private Cliente cliente;
+	private byte[] foto;
+
+	@NotNull(message = "Es necesario asociar el dueño")
+	@ManyToOne
+	private Cliente cliente;
 
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public String getEspecie() {
 		return especie;
 	}
-	
+
 	public void setEspecie(String especie) {
 		this.especie = especie;
 	}
-	
+
 	public String getRaza() {
 		return raza;
 	}
-	
+
 	public void setRaza(String raza) {
 		this.raza = raza;
 	}
-	
+
 	public Cliente getCliente() {
 		return cliente;
 	}
-	
+
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
+
 	@Override
 	public String toString() {
 		return StringUtils.capitalize(nombre.concat(" (").concat(especie).concat(")"));
@@ -132,5 +132,4 @@ public class Paciente {
 		this.foto = foto;
 	}
 
-	
 }
