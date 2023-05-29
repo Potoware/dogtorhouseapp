@@ -24,7 +24,7 @@ public class Constantes {
 	// Listas de la aplicacion
 	private static List<LabelValue> initMotivosCancelacion = Arrays.asList(new LabelValue("001", "No acude"),
 			new LabelValue("002", "Por cliente"), new LabelValue("003", "Por veterinario"),
-			new LabelValue("004", "Otros motivos"), new LabelValue("404", "ERROR"));
+			new LabelValue("004", "Otros motivos"));
 
 	public final static List<LabelValue> motivosCancelacion = Collections.unmodifiableList(initMotivosCancelacion);
 

@@ -22,6 +22,7 @@
 /Users/potoware/Documents/sts/dogtorHouseApp/src/main/java/com/dogtorhouse/app/controller/VeterinarioController.java
 /Users/potoware/Documents/sts/dogtorHouseApp/src/main/java/com/dogtorhouse/app/service/impl/ClienteService.java
 /Users/potoware/Documents/sts/dogtorHouseApp/src/main/java/com/dogtorhouse/app/service/IVeterinarioService.java
+/Users/potoware/Documents/sts/dogtorHouseApp/src/main/java/com/dogtorhouse/app/controller/HistoriaClinicaController.java
 /Users/potoware/Documents/sts/dogtorHouseApp/src/main/java/com/dogtorhouse/app/service/impl/CitaService.java
 /Users/potoware/Documents/sts/dogtorHouseApp/src/main/java/com/dogtorhouse/app/util/Utilidades.java
 /Users/potoware/Documents/sts/dogtorHouseApp/src/main/java/com/dogtorhouse/app/service/impl/RolService.java

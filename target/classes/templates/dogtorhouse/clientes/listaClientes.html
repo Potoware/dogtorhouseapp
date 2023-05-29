@@ -82,8 +82,10 @@
 					<td th:text="${cliente.apellidos}"></td>
 					<td th:text="${cliente.telefono}"></td>
 					<td>
+					<div class="d-flex justify-content-center">
 						<a class="btn btn-edit btn-xs" th:href="@{/dogtorhouse/clientes/cliente/}+${cliente.id}"><i class="bi bi-pencil-square" style="color: white;"></i></a>
-						<a class="btn btn-danger btn-xs" th:href="@{/dogtorhouse/clientes/cliente/eliminar/}+${cliente.id}"  onclick="mostrarPopupConfirmar('¿Estás seguro que quieres eliminar el cliente?', this); return false;"><i class="bi bi-trash-fill" style="color: white;" ></i></a>
+						<a class="btn btn-danger btn-xs" th:if="${session.rol == 2}" th:href="@{/dogtorhouse/clientes/cliente/eliminar/}+${cliente.id}"  onclick="mostrarPopupConfirmar('¿Estás seguro que quieres eliminar el cliente?', this); return false;"><i class="bi bi-trash-fill" style="color: white;" ></i></a>
+					</div>
 					</td>
 				</tr>
 			</tbody>

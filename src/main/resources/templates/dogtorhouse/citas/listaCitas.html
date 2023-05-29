@@ -97,7 +97,7 @@
 					<th>Veterinario</th>
 					<th>Estado</th>
 					<th>Fecha</th>
-					<th>Opciones</th>
+					<th style="text-align: center">Opciones</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -112,10 +112,11 @@
 					<td th:text="${#temporals.format(cita.fechaHora, 'dd/MM/yyyy hh:mm a')}"></td>
 <td>
   <div class="d-flex justify-content-center">
-    <a th:if="${cita.estado!='010' and cita.estado!='003'}" title="Editar Cita" class="btn btn-edit btn-xs" th:href="@{/dogtorhouse/citas/cita/}+${cita.id}"><i class="bi bi-pencil-square" style="color: white;"></i></a>
-    <a th:if="${cita.estado!='010' and cita.estado!='003'}" title="Atender Cita" class="btn btn-success btn-xs" th:href="@{/dogtorhouse/citas/atenderCita/}+${cita.id}"><i class="bi bi-check-lg" style="color: white;"></i></a>
-    <a th:if="${cita.estado=='010'}" class="btn btn-see btn-xs" title="Ver Cita" th:href="@{/dogtorhouse/citas/cita/}+${cita.id}"><i class="bi bi-eye" style="color: white;"></i></a>
-    <a th:if="${cita.estado=='003'}" class="btn btn-see btn-xs" title="Ver Cita" th:href="@{/dogtorhouse/citas/atenderCita/}+${cita.id}"><i class="bi bi-eye" style="color: white;"></i></a>
+    <a th:if="${cita.estado!='010' and cita.estado!='003'}" title="Editar Cita" class="btn btn-edit btn-xs pr-4" th:href="@{/dogtorhouse/citas/cita/}+${cita.id}"><i class="bi bi-pencil-square" style="color: white;"></i></a>
+    <a th:if="${cita.estado!='010' and cita.estado!='003'}" title="Atender Cita" class="btn btn-success btn-xs pr-4" th:href="@{/dogtorhouse/citas/atenderCita/}+${cita.id}"><i class="bi bi-check-lg" style="color: white;"></i></a>
+    <a th:if="${cita.estado=='010'}" class="btn btn-see btn-xs pr-4" title="Ver Cita" th:href="@{/dogtorhouse/citas/cita/}+${cita.id}"><i class="bi bi-eye" style="color: white;"></i></a>
+    <a th:if="${cita.estado=='003'}" class="btn btn-see btn-xs pr-4" title="Ver Cita" th:href="@{/dogtorhouse/citas/atenderCita/}+${cita.id}"><i class="bi bi-eye" style="color: white;"></i></a>
+ 	<a class="btn btn-danger btn-xs" th:if="${session.rol == 2 and cita.estado!='010' and cita.estado!='003'}" th:href="@{/dogtorhouse/citas/cita/eliminar/}+${cita.id}"  onclick="mostrarPopupConfirmar('¿Estás seguro que quieres eliminar el cliente?', this); return false;"><i class="bi bi-trash-fill" style="color: white;" ></i></a>	
   </div>
 </td>
 

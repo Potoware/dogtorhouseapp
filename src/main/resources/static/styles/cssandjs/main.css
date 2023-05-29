@@ -381,9 +381,108 @@ body.bg-perro-gato {
   border-radius: 50%; /* Aplica un borde redondeado */
   margin: 0 auto; /* Centra horizontalmente */
 }
+.img-hc{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px; /* Aplica un borde redondeado */
+  margin: 0 auto; /* Centra horizontalmente */
+}
 
 .image-container {
   background-color: #ddd; /* Color de fondo gris */
   display: flex;
   justify-content: center;
 }
+
+.parentHD {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+.div1HD { grid-area: 1 / 1 / 3 / 2; }
+.div2HD { grid-area: 1 / 2 / 3 / 5; } 
+
+
+.parentDP {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+border:1px solid rgb(148, 17, 0);
+margin-top: 20px;
+}
+
+.div1DP { grid-area: 1 / 3 / 2 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div2DP { grid-area: 1 / 5 / 2 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div3DP { grid-area: 2 / 3 / 3 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div4DP { grid-area: 2 / 5 / 3 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div5DP { grid-area: 3 / 3 / 4 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div6DP { grid-area: 3 / 5 / 4 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div7DP { grid-area: 4 / 3 / 5 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div8DP { grid-area: 4 / 5 / 5 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div9DP { grid-area: 5 / 3 / 6 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div10DP { grid-area: 5 / 5 / 6 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center;  justify-content: flex-start;  width: 100%;  padding-left: 15px;}
+.div11DP { grid-area: 1 / 1 / 6 / 3; }
+
+
+.parentDM {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+border:1px solid rgb(148, 17, 0);
+margin-top: 20px;
+}
+
+.div1DM { grid-area: 1 / 3 / 2 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div2DM { grid-area: 1 / 5 / 2 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div3DM { grid-area: 2 / 3 / 3 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div4DM { grid-area: 2 / 5 / 3 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div5DM { grid-area: 3 / 3 / 4 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div6DM { grid-area: 3 / 5 / 4 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div7DM { grid-area: 4 / 3 / 5 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div8DM { grid-area: 4 / 5 / 5 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div9DM { grid-area: 5 / 3 / 6 / 5; font-weight: bold;border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div10DM { grid-area: 5 / 5 / 6 / 8; border: 0.5px solid rgb(148, 17, 0);  display: flex;  align-items: center; justify-content: flex-start; width: 100%; padding-left: 15px;}
+.div11DM { grid-area: 1 / 1 / 6 / 3; }
+
+
+.parentDC {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+border: 1px solid  rgb(148, 17, 0);
+margin-top: 20px;
+}
+.div1DC { grid-area: 1 / 1 / 2 / 5; }
+.div2DC { grid-area: 2 / 1 / 3 / 2; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px;font-weight: bold;display: flex;  align-items: center; justify-content: flex-start;}
+.div3DC { grid-area: 2 / 2 / 3 / 3; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px;display: flex;  align-items: center; justify-content: flex-start;}
+.div4DC { grid-area: 3 / 1 / 4 / 2; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px;font-weight: bold;display: flex;  align-items: center; justify-content: flex-start;}
+.div5DC { grid-area: 3 / 2 / 4 / 3; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px;display: flex;  align-items: center; justify-content: flex-start;}
+.div6DC { grid-area: 4 / 1 / 5 / 2; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px;font-weight: bold;display: flex;  align-items: center; justify-content: flex-start;}
+.div7DC { grid-area: 4 / 2 / 5 / 3; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px;display: flex;  align-items: center; justify-content: flex-start;}
+.div8DC { grid-area: 5 / 1 / 6 / 2; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px;font-weight: bold;display: flex;  align-items: center; justify-content: flex-start;}
+.div9DC { grid-area: 5 / 2 / 6 / 3; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px;display: flex;  align-items: center; justify-content: flex-start;}
+.div10DC { grid-area: 2 / 3 / 6 / 5; border: 0.5px solid rgb(148, 17, 0); padding-left: 15px}
+
+.parentTR {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(5, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+border: 2px solid gray;
+margin-top: 20px;
+}
+
+.div1TR { grid-area: 1 / 1 / 2 / 5; }
+.div2TR { grid-area: 2 / 1 / 3 / 5; padding-left: 15px;display: flex;  align-items: center; justify-content: flex-start;}
+.div3TR { grid-area: 3 / 1 / 4 / 5; padding-left: 15px;display: flex;  align-items: center; justify-content: flex-start;}

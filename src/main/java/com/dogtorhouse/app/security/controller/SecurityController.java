@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dogtorhouse.app.entity.Rol;
 import com.dogtorhouse.app.entity.Veterinario;
 import com.dogtorhouse.app.security.service.impl.CifradoService;
 import com.dogtorhouse.app.service.IVeterinarioService;
@@ -77,6 +78,7 @@ public class SecurityController {
 		session.setAttribute("base64UtilsV2", base64Utils);
 		// Agregar los bytes de la foto al modelo
 		session.setAttribute("fotoBytesPrf", fotoBytes);
+		session.setAttribute("rol", veterinarioConsultado.get().getRoles().stream().findFirst().map(Rol::getId).orElse(null));
 		
 		status.setComplete();
 		return "redirect:/dogtorhouse/citas";

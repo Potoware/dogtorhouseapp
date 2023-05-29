@@ -1,79 +1,133 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es-419">
-	<head th:replace="compartido/header"></head>
-	<body id="body-pd">
+
+<head th:replace="compartido/header"></head>
+
+<body id="body-pd">
 	<header class="header" id="header">
 		<div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-			<h5 class="title-page" th:text="${operacion}"></h5>
+		<h5 class="title-page" th:text="${operacion}"></h5>
 		<div class="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt=""> </div>
 	</header>
-	
+
 	<div class="l-navbar" id="nav-bar" th:replace="compartido/sidebar"></div>
 
-	<div class="container pt-5 ">
-		<form th:action="@{/citas/cita}" th:object="${cita}" class="mx-auto" method="POST">
-			<div class="row g-3 align-items-center mt-1">
-				<div class="col-sm-2">
-					<label for="paciente" class="col-form-label">Paciente:</label>
-				</div>
-				<div class="col-sm-5">
-					<select th:field="*{paciente}" class="form-control" required>
-						<option value="">Seleccione...</option>
-						<option th:each="paciente: ${pacientes}" th:value="${paciente.idPaciente}" th:text="${paciente}" ></option>
-					</select>
-				</div>
-				<div class="col-sm-5">
-					<small class="form-text text-danger" th:if"${#fields.hasErrors('paciente')}" th:errors="*{paciente}"></small>
-				</div>
+	<div id="hcp" class="container pt-2" style="width: 70%;">
+
+		<div class="parentHD">
+			<div class="div1HD" style="border: 0px solid rgb(148, 17, 0); width: 60%; margin: auto;">
+				<img src="https://dogtorhouse-app.onrender.com/images/logo-multi-c.png" style="width: 100%;">
 			</div>
-			<div class="row g-3 align-items-center mt-1">
-				<div class="col-sm-2">
-					<label for="veterinario" class="col-form-label">Veterinario:</label>
-				</div>
-				<div class="col-sm-5">
-					<select th:field="*{veterinario}" class="form-control" required>
-						<option value="">Seleccione...</option>
-						<option th:each="veterinario: ${veterinarios}" th:value="${veterinario.id}" th:text="${veterinario}" ></option>
-					</select>
-				</div>
-				<div class="col-sm-5">
-					<small class="form-text text-danger" th:if"${#fields.hasErrors('veterinario')}" th:errors="*{veterinario}"></small>
-				</div>
+			<div class="div2HD"
+				style="margin: 2px; text-align: center; background-color: rgb(148, 17, 0);border-radius: 20px 20px 20px 20px; display: flex; justify-content: center; color:white;align-items: center; flex-direction: column;">
+				<h3 style="margin: 0;"><b>HISTORIA CLINICA</b></h3>
+				<h4 style="margin: 0;" th:text="${paciente.nombre}"></h4>
 			</div>
-			
-			<div class="row g-3 align-items-center mt-1">
-				<div class="col-sm-2">
-					<label for="tipo" class="col-form-label">Tipo:</label>
-				</div>
-				<div class="col-sm-5">
-					<select th:field="*{tipo}" class="form-control" required>
-						<option value="">Seleccione...</option>
-						<option value="01">Consulta General</option>
-						<option value="02">Urgencia</option>
-						<option value="03">Tratamiento</option>
-						<option value="04">Valoracion</option>
-					</select>
-				</div>
-				<div class="col-sm-5">
-					<small class="form-text text-danger" th:if"${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></small>
-				</div>
-			</div>
-			<div class="row g-3 align-items-center mt-1">
-				<div class="col-sm-2">
-					<label for="fechaHora" class="col-form-label">Fecha y hora:</label>
-				</div>
-				<div class="col-sm-5">
-					<input type="datetime-local" class="form-control" id="fechaHora" name="fechaHora" required/>
-				</div>
-			</div>
-			
-			<div class="d-grid gap-2 mt-5 d-md-flex justify-content-md-end">
-				<div class="col-sm-6"><input type="submit" value="Guardar" class="btn btn-primary"/></div>
-			</div>
-		</form>
+
+
+		</div>
+		<h4
+			style="color: rgb(148, 17, 0); margin-top: 30px; display: flex; justify-content: center; align-items: center;">
+			Datos del paciente</h4>
+
+
+<div class="parentDP" style="border-radius: 20px 0px 0px 20px; border: 1px solid rgb(148, 17, 0); margin-top: 20px;">
+	<div class="div1DP">Nombre:</div>
+	<div class="div2DP" th:text="${paciente.nombre}"></div>
+	<div class="div3DP">Especie:</div>
+	<div class="div4DP" th:text="${paciente.especie}"></div>
+	<div class="div5DP">Raza:</div>
+	<div class="div6DP" th:text="${paciente.raza}"></div>
+	<div class="div7DP">Color:</div>
+	<div class="div8DP" th:text="${paciente.color}"></div>
+	<div class="div9DP">Fecha Nacimiento:</div>
+	<div class="div10DP" th:text="${paciente.fechaNacimiento}"></div>
+	<div class="div11DP">
+		<img id="previewImage"
+			th:src="${fotoBytes != null ? 'data:image/' + #strings.replace(#strings.substringAfter(fotoType, '/'), '/', '') + ';base64,' + base64Utils.byteArrayToBase64(fotoBytes) : 'https://i.ibb.co/183N6k6/bg-pc.png'}"
+			class="card-img-top img-hc" alt="...">
 	</div>
- 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-	
+</div>
+
+	<h4
+			style="color: rgb(148, 17, 0); margin-top: 30px; display: flex; justify-content: center; align-items: center;">
+			Datos del cliente</h4>
+
+<div class="parentDM" style="border-radius: 20px 0px 0px 20px; border: 1px solid rgb(148, 17, 0); margin-top: 20px;">
+	<div class="div1DM">Nombre:</div>
+	<div class="div2DM" th:text="${paciente.cliente.nombres +' '+ paciente.cliente.apellidos}"></div>
+	<div class="div3DM">Identificación:</div>
+	<div class="div4DM" th:text="${paciente.cliente.identificacion}"></div>
+	<div class="div5DM">Email:</div>
+	<div class="div6DM" th:text="${paciente.cliente.email}"></div>
+	<div class="div7DM">Telefono:</div>
+	<div class="div8DM" th:text="${paciente.cliente.telefono}"></div>
+	<div class="div9DM">Dirección:</div>
+	<div class="div10DM" th:text="${paciente.cliente.direccion}"></div>
+	<div class="div11DM">
+		<img id=""
+			th:src="${fotoCBytes != null ? 'data:image/' + #strings.replace(#strings.substringAfter(fotoType, '/'), '/', '') + ';base64,' + base64Utils.byteArrayToBase64(fotoCBytes) : 'https://i.ibb.co/183N6k6/bg-pc.png'}"
+			class="card-img-top img-hc" alt="...">
+	</div>
+</div>
+
+<h4
+			style="color: rgb(148, 17, 0); margin-top: 30px; display: flex; justify-content: center; align-items: center;">
+			Citas del paciente</h4>
+
+<div th:each="cita : ${citas}">
+ 
+
+
+		<div class="parentDC">
+			<div class="div1DC"  style="background-color: rgb(148, 17, 0); color:white; text-align:center;" ><h5 th:text="${'Cita '+cita.tipo+' - '+ #temporals.format(cita.fechaHora, 'dd/MM/yyyy hh:mm a')}"></h5> </div>
+			<div class="div2DC">Tipo:</div>
+			<div class="div3DC" th:text="${cita.tipo}"> </div>
+			<div class="div4DC" >Estado:</div>
+			<div class="div5DC" th:text="${cita.estado}"></div>
+			<div class="div6DC">Fecha: </div>
+			<div class="div7DC" th:text="${#temporals.format(cita.fechaHora, 'dd/MM/yyyy hh:mm a')}"></div>
+			<div class="div8DC" > Veterinario:</div>
+			<div class="div9DC" th:text="${cita.veterinario.nombres +' '+ cita.veterinario.apellidos}"></div>
+			<div class="div10DC"><b>Diagnostico: </b><p th:text="${cita.diagnostico}"></p></div>
+		</div>
+
+
+		<div class="parentTR">
+  <div class="div1TR" style="background-color: rgb(148, 17, 0); color:white; text-align:center;">
+    <h5>Tratamiento</h5>
+  </div>
+  <div class="div2TR" th:text="${cita.tratamiento}"></div>
+  
+  <div class="div3TR">
+    <p><b>Medicación:</b></p>
+    <p><ul>
+      <li th:each="cm : ${cita.medicacion}" th:text="${cm}"></li>
+    </ul>
+    </p>
+  </div>
+</div>
+
+
+	</div>
+</div>
+	<button onclick="imprimirDiv()">Imprimir</button>
+  <script>
+    function imprimirDiv() {
+      var contenido = document.getElementById('hcp').innerHTML;
+      var ventanaImpresion = window.open('', '', 'width=1000,height=800');
+      ventanaImpresion.document.write('<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>DogtorHouse</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet"><link th:href="@{/styles/cssandjs/main.css}" rel="stylesheet" /><link rel="stylesheet" th:href="@{/styles/cssandjs/select2.min.css}" /></head><body><style>.img-hc{width:200px;height:200px;object-fit:cover;border-radius:20px;margin:0 auto;}.image-container{background-color:#ddd;display:flex;justify-content:center;}.parentHD{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);grid-column-gap:0px;grid-row-gap:0px;}.div1HD{grid-area:1/1/3/2;}.div2HD{grid-area:1/2/3/5;}.parentDP{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(5,1fr);grid-column-gap:0px;grid-row-gap:0px;border:1px solid rgb(148,17,0);margin-top:20px;}.div1DP,.div2DP,.div3DP,.div4DP,.div5DP,.div6DP,.div7DP,.div8DP,.div9DP,.div10DP{grid-area:1/3/2/5;font-weight:bold;border:0.5px solid rgb(148,17,0);display:flex;align-items:center;justify-content:flex-start;width:100%;padding-left:15px;}.div2DP{grid-area:1/5/2/8;}.div3DP{grid-area:2/3/3/5;font-weight:bold;}.div4DP{grid-area:2/5/3/8;}.div5DP{grid-area:3/3/4/5;font-weight:bold;}.div6DP{grid-area:3/5/4/8;}.div7DP{grid-area:4/3/5/5;font-weight:bold;}.div8DP{grid-area:4/5/5/8;}.div9DP{grid-area:5/3/6/5;font-weight:bold;}.div10DP{grid-area:5/5/6/8;}.div11DP{grid-area:1/1/6/3;}</style>' + contenido + '</body></html>');
+      ventanaImpresion.document.close();
+      ventanaImpresion.print();
+    }
+  </script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+		integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+		crossorigin="anonymous"></script>
+
 </body>
+
 </html>
